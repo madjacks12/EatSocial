@@ -1,11 +1,13 @@
 package com.mdjdev.eatsocial;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -21,5 +23,13 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+        ButterKnife.bind(this);
+
+        Intent intent = getIntent();
+        String location = intent.getStringExtra("location");
+        mRestaurantHeader.setText("Your Friends ate here in: " + location);
+
+        ListAdapter adapter = new ListAdapter(this, android.R.layout.simple_list_item_1, restaurants, friends);
+        mListView.setAdapter(adapter);
     }
 }

@@ -8,19 +8,22 @@ import android.widget.ArrayAdapter;
  */
 
 public class ListAdapter extends ArrayAdapter {
+    private Context mContext;
+    private String[] mRestaurants;
+    private String[] mFriends;
 
     public ListAdapter(Context mContext, int resource, String[] mRestaurants, String[] mFriends) {
         super(mContext, resource);
         this.mContext = mContext;
         this.mRestaurants = mRestaurants;
-        this.mCuisines = mCuisines;
+        this.mFriends = mFriends;
     }
 
     @Override
     public Object getItem(int position) {
         String restaurant = mRestaurants[position];
-        String cuisine = mCuisines[position];
-        return String.format("%s \nServes great: %s", restaurant, cuisine);
+        String friend = mFriends[position];
+        return String.format("%s \n %s", restaurant, friend);
     }
 
     @Override
