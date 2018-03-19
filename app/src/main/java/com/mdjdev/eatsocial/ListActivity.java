@@ -26,8 +26,8 @@ public class ListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        String location = intent.getStringExtra("location");
-        mRestaurantHeader.setText("Your Friends ate here in: " + location);
+        String zip = intent.getStringExtra("zip");
+        mRestaurantHeader.setText("Your Friends ate here in: " + zip);
 
         ListAdapter adapter = new ListAdapter(this, android.R.layout.simple_list_item_1, restaurants, friends);
         mListView.setAdapter(adapter);

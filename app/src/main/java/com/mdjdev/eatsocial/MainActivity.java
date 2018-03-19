@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,12 +21,14 @@ import butterknife.ButterKnife;
 
 import static com.mdjdev.eatsocial.R.id.imageView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Bind(R.id.headingText) TextView mHeadingText;
     @Bind(R.id.subHeading) TextView mSubHeading;
-    @Bind(R.id.startButton) Button mStartButton;
+    @Bind(R.id.listButton) Button mListButton;
+    @Bind(R.id.mapButton) Button mMapButton;
     @Bind(R.id.imageView) ImageView mImageView;
+    @Bind(R.id.zipCode) EditText mZipCode;
     Intent intent;
 
     @Override
@@ -35,22 +38,31 @@ public class MainActivity extends AppCompatActivity {
 
         mHeadingText = (TextView) findViewById(R.id.headingText);
         mSubHeading = (TextView) findViewById(R.id.subHeading);
+        mZipCode = (EditText) findViewById(R.id.zipCode);
         Typeface comfortaaFont = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa_Regular.ttf");
 
         mHeadingText.setTypeface(comfortaaFont);
         mSubHeading.setTypeface(comfortaaFont);
 
         ButterKnife.bind(this);
+        mListButton.setOnClickListener(this);
+        mMapButton.setOnClickListener(this);
 
-        mStartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (intent == null) {
-                    intent = new Intent(MainActivity.this, ListActivity.class);
-                }
-                startActivity(intent);
-            }
-        });
+    }
+    @Override
+    public void onClick(View v) {
+        if(v == mListButton) {
+            String zip = mZipCode.getText().toString();
+            Intent intent = new Intent(MainActivity.this, ListActivity.class);
+            intent.putExtra("zip", zip);
+            startActivity(intent);
+        }
+        if(v == mMapButton) {
+            String zip = mZipCode.getText().toString();
+            Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+            intent.putExtra("zip", zip);
+            startActivity(intent);
+        }
     }
 
     }
