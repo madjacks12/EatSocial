@@ -39,7 +39,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         LatLng portland = new LatLng(45.5231, -122.6765);
-        mMap.addMarker(new MarkerOptions().position(portland).title("Marker in Portland"));
+        LatLng sweetHereAfter = new LatLng(45.5163, -122.6303);
+        LatLng smokehouseTavern = new LatLng(45.5177, -122.6509);
+        mMap.addMarker(new MarkerOptions().position(sweetHereAfter).title("Sweet Hereafter"));
+        mMap.addMarker(new MarkerOptions().position(smokehouseTavern).title("Smokehouse Tavern"));
         mMap.setMaxZoomPreference(20);
         mMap.setMinZoomPreference(10);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(portland));

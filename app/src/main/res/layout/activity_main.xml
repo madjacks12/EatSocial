@@ -55,7 +55,7 @@
         android:layout_marginBottom="33dp"
         android:padding="5dp"
         android:hint="Enter Zip Code"
-        android:inputType="text"
+        android:inputType="number"
         android:layout_above="@+id/listButton"
         android:layout_centerHorizontal="true" />
 
