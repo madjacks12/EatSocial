@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.mdjdev.eatsocial.ListActivity">
 
-
     <TextView
         android:id="@+id/restaurantHeader"
         android:layout_width="166dp"

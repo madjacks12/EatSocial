@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -19,7 +20,6 @@ import java.io.File;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-import static com.mdjdev.eatsocial.R.id.imageView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -55,13 +55,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String zip = mZipCode.getText().toString();
             Intent intent = new Intent(MainActivity.this, ListActivity.class);
             intent.putExtra("zip", zip);
-            startActivity(intent);
+            if (zip.length() != 5) {
+                Toast.makeText(MainActivity.this, "Zip Code must be 5 digits", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                startActivity(intent);
+            }
         }
         if(v == mMapButton) {
             String zip = mZipCode.getText().toString();
             Intent intent = new Intent(MainActivity.this, MapsActivity.class);
             intent.putExtra("zip", zip);
-            startActivity(intent);
+            if (zip.length() != 5) {
+                Toast.makeText(MainActivity.this, "Zip Code must be 5 digits", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                startActivity(intent);
+            }
         }
     }
 
