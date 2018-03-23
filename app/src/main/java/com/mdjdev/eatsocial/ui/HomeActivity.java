@@ -1,9 +1,7 @@
-package com.mdjdev.eatsocial;
+package com.mdjdev.eatsocial.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,15 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-
-import java.io.File;
+import com.mdjdev.eatsocial.R;
+import com.mdjdev.eatsocial.adapters.ListActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Bind(R.id.headingText) TextView mHeadingText;
     @Bind(R.id.subHeading) TextView mSubHeading;
@@ -34,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
 
         mHeadingText = (TextView) findViewById(R.id.headingText);
         mSubHeading = (TextView) findViewById(R.id.subHeading);
@@ -53,10 +50,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v == mListButton) {
             String zip = mZipCode.getText().toString();
-            Intent intent = new Intent(MainActivity.this, ListActivity.class);
+            Intent intent = new Intent(HomeActivity.this, ListActivity.class);
             intent.putExtra("zip", zip);
             if (zip.length() != 5) {
-                Toast.makeText(MainActivity.this, "Zip Code must be 5 digits", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, "Zip Code must be 5 digits", Toast.LENGTH_SHORT).show();
             }
             else {
                 startActivity(intent);
@@ -64,10 +61,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(v == mMapButton) {
             String zip = mZipCode.getText().toString();
-            Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+            Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
             intent.putExtra("zip", zip);
             if (zip.length() != 5) {
-                Toast.makeText(MainActivity.this, "Zip Code must be 5 digits", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, "Zip Code must be 5 digits", Toast.LENGTH_SHORT).show();
             }
             else {
                 startActivity(intent);
@@ -75,5 +72,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    }
-
+}

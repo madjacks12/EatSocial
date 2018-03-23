@@ -31,4 +31,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife:7.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     testCompile 'junit:junit:4.12'
+    compile 'com.facebook.android:facebook-core:[4,5)'
+    compile 'com.facebook.android:facebook-login:[4,5)'
+    compile 'com.facebook.android:facebook-places:[4,5)'
 }

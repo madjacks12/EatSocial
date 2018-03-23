@@ -1,10 +1,12 @@
-package com.mdjdev.eatsocial;
+package com.mdjdev.eatsocial.adapters;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.mdjdev.eatsocial.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

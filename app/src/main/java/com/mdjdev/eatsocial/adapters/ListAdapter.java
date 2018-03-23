@@ -1,4 +1,4 @@
-package com.mdjdev.eatsocial;
+package com.mdjdev.eatsocial.adapters;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
