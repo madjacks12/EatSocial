@@ -1,7 +1,6 @@
 package com.mdjdev.eatsocial.ui;
 
 import android.content.Intent;
-import android.content.pm.PackageInstaller;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,28 +15,23 @@ import android.widget.Toast;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.Profile;
 import com.facebook.login.LoginResult;
-import com.mdjdev.eatsocial.DownloadImage;
 import com.mdjdev.eatsocial.R;
-import com.mdjdev.eatsocial.adapters.ListActivity;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    @Bind(R.id.headingText) TextView mHeadingText;
-    @Bind(R.id.subHeading) TextView mSubHeading;
-    @Bind(R.id.listButton) Button mListButton;
-    @Bind(R.id.mapButton) Button mMapButton;
-    @Bind(R.id.imageView) ImageView mImageView;
-    @Bind(R.id.zipCode) EditText mZipCode;
+    @BindView(R.id.headingText) TextView mHeadingText;
+    @BindView(R.id.subHeading) TextView mSubHeading;
+    @BindView(R.id.listButton) Button mListButton;
+    @BindView(R.id.mapButton) Button mMapButton;
+    @BindView(R.id.imageView) ImageView mImageView;
+    @BindView(R.id.zipCode) EditText mZipCode;
     Intent intent;
     LoginResult loginResult;
 
@@ -47,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
-        Log.d("user id", id);
         String imageUrl = intent.getStringExtra("imageUrl");
         String name = intent.getStringExtra("name");
         String surname = intent.getStringExtra("surname");
@@ -72,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new GraphRequest.Callback() {
                     @Override
                     public void onCompleted( GraphResponse graphResponse) {
-                       String friends = graphResponse.getRawResponse();
+                        String friends = graphResponse.getRawResponse();
                         try {
                             Log.v("Output", graphResponse.getJSONObject().getJSONArray("data").toString());
                         } catch (JSONException e) {
@@ -80,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 });
-                GraphRequest.executeBatchAsync(request);
+        GraphRequest.executeBatchAsync(request);
     }
 
     @Override
