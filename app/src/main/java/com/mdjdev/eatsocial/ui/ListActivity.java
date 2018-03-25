@@ -53,12 +53,10 @@ public class ListActivity extends AppCompatActivity {
                 mAdapter = new ListAdapter(getApplicationContext(), friends);
                 mRecyclerView.setAdapter(mAdapter);
                 RecyclerView.LayoutManager layoutManager =
-                        new LinearLayoutManager(RestaurantListActivity.this);
+                        new LinearLayoutManager(ListActivity.this);
                 mRecyclerView.setLayoutManager(layoutManager);
                 mRecyclerView.setHasFixedSize(true);
             }
         });
-
-
-
+    }
 }

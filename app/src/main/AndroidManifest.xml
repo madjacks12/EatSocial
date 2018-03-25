@@ -56,7 +56,9 @@
         <service
             android:name=".FacebookService.FacebookService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".ui.FriendDetailActivity"></activity>
     </application>
 
 </manifest>
