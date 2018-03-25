@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
 
         FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
             @Override
-            public void onSuccess(LoginResult loginResult) {
+            public void onSuccess(final LoginResult loginResult) {
                 GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response) {
@@ -74,6 +74,8 @@ public class LoginActivity extends AppCompatActivity {
                                 gender = object.getString("gender");
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            String accessToken = loginResult.getAccessToken().toString();
+                            intent.putExtra("id", userId);
                             intent.putExtra("name",firstName);
                             intent.putExtra("surname",lastName);
                             intent.putExtra("imageUrl",profilePicture.toString());
@@ -102,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-        loginButton.setReadPermissions("user_friends", "user_posts","user_posts");
+        loginButton.setReadPermissions("user_friends","user_posts");
         loginButton.registerCallback(callbackManager, callback);
     }
 
