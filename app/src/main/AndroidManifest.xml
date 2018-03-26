@@ -51,14 +51,11 @@
         <activity
             android:name=".ui.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.MainActivity"></activity>
+        <activity android:name=".ui.ListActivity"></activity>
 
-        <service
-            android:name=".FacebookService.FacebookService"
-            android:enabled="true"
-            android:exported="true" />
+        <activity android:name=".ui.FriendDetailActivity" />
 
-        <activity android:name=".ui.FriendDetailActivity"></activity>
     </application>
 
 </manifest>

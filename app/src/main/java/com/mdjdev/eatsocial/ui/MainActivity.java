@@ -1,9 +1,10 @@
 package com.mdjdev.eatsocial.ui;
 
+
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,18 +21,18 @@ import com.mdjdev.eatsocial.R;
 
 import org.json.JSONException;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    @BindView(R.id.headingText) TextView mHeadingText;
-    @BindView(R.id.subHeading) TextView mSubHeading;
-    @BindView(R.id.listButton) Button mListButton;
-    @BindView(R.id.mapButton) Button mMapButton;
-    @BindView(R.id.imageView) ImageView mImageView;
-    @BindView(R.id.zipCode) EditText mZipCode;
+    @Bind(R.id.headingText) TextView mHeadingText;
+    @Bind(R.id.subHeading) TextView mSubHeading;
+    @Bind(R.id.listButton) Button mListButton;
+    @Bind(R.id.mapButton) Button mMapButton;
+    @Bind(R.id.imageView) ImageView mImageView;
+    @Bind(R.id.zipCode) EditText mZipCode;
     Intent intent;
     LoginResult loginResult;
 
@@ -39,22 +40,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = getIntent();
-        String id = intent.getStringExtra("id");
-        String imageUrl = intent.getStringExtra("imageUrl");
-        String name = intent.getStringExtra("name");
-        String surname = intent.getStringExtra("surname");
-        mHeadingText = (TextView) findViewById(R.id.headingText);
-        mSubHeading = (TextView) findViewById(R.id.subHeading);
-        mZipCode = (EditText) findViewById(R.id.zipCode);
+        ButterKnife.bind(this);
+        Intent intentGet = getIntent();
+        String id = intentGet.getStringExtra("id");
+        String imageUrl = intentGet.getStringExtra("imageUrl");
+        String name = intentGet.getStringExtra("name");
+        String surname = intentGet.getStringExtra("surname");
+        Intent intentPush = new Intent(MainActivity.this, ListActivity.class);
+
+
         Typeface comfortaaFont = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa_Regular.ttf");
 
         mHeadingText.setTypeface(comfortaaFont);
         mSubHeading.setTypeface(comfortaaFont);
-
-        ButterKnife.bind(this);
-        mListButton.setOnClickListener(this);
         mMapButton.setOnClickListener(this);
+        mListButton.setOnClickListener(this);
+
+
+
+
 
         //API call
 
@@ -81,7 +85,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(v == mListButton) {
             String zip = mZipCode.getText().toString();
             Intent intent = new Intent(MainActivity.this, ListActivity.class);
+            Intent intentGet = getIntent();
+            String id = intentGet.getStringExtra("id");
             intent.putExtra("zip", zip);
+            intent.putExtra("id", id);
             if (zip.length() != 5) {
                 Toast.makeText(MainActivity.this, "Zip Code must be 5 digits", Toast.LENGTH_SHORT).show();
             }

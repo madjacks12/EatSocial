@@ -18,7 +18,7 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -53,7 +53,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.FriendViewHold
 
 
     public class FriendViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.friendNameTextView) TextView mNameTextView;
+        @Bind(R.id.friendNameTextView) TextView mNameTextView;
         private Context mContext;
 
         public FriendViewHolder(View itemView) {
@@ -68,7 +68,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.FriendViewHold
             int itemPosition = getLayoutPosition();
             Intent intent = new Intent(mContext, FriendDetailActivity.class);
             intent.putExtra("position", itemPosition);
-            intent.putExtra("restaurants", Parcels.wrap(mFriends));
+            intent.putExtra("friends", Parcels.wrap(mFriends));
             mContext.startActivity(intent);
         }
 

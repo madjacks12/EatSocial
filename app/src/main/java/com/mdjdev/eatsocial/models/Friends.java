@@ -11,20 +11,20 @@ import java.util.ArrayList;
 @Parcel
 public class Friends {
     private String name;
-    private ArrayList<String> checkIns = new ArrayList<>();
+    private String id;
 
     public Friends() {}
 
-    public Friends(String name, ArrayList<String> checkIns) {
+    public Friends(String name, String id) {
         this.name = name;
-        this.checkIns = checkIns;
+        this.id = id;
 }
 
     public String getName() {
         return name;
     }
 
-    public ArrayList<String> getCheckIns() {
-        return checkIns;
+    public String id() {
+        return id;
     }
 }

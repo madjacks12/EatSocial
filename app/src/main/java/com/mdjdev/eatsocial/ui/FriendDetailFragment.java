@@ -16,14 +16,14 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
 public class FriendDetailFragment extends Fragment {
-    @BindView(R.id.friendNameTextView)
+    @Bind(R.id.friendNameTextView)
     TextView mNameLabel;
-    @BindView(R.id.mapButtonView) Button mCategoriesLabel;
+    @Bind(R.id.mapButtonView) Button mCategoriesLabel;
 
     private Friends mFriends;
 
