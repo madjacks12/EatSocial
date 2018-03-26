@@ -15,6 +15,8 @@ import com.mdjdev.eatsocial.adapters.ListAdapter;
 import com.mdjdev.eatsocial.models.Friends;
 import com.mdjdev.eatsocial.models.User;
 import com.mdjdev.eatsocial.service.FacebookService;
+import okhttp3.Call;
+import okhttp3.Callback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -76,7 +78,7 @@ public class ListActivity extends AppCompatActivity {
                 });
         GraphRequest.executeBatchAsync(request);
 
-        ListActivity.this.runOnUiThread(new Runnable() {
+            ListActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 mAdapter = new ListAdapter(getApplicationContext(), friends);
