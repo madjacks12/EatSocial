@@ -11,10 +11,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import java.util.ArrayList;
 
+import okhttp3.Callback;
+import okhttp3.Response;
+
 public class FacebookService{
-    public static void getFriends(String id) {
+    public static void getFriends(String id, Callback response) {
         GraphRequest request = GraphRequest.newGraphPathRequest(
                 AccessToken.getCurrentAccessToken(),
                 "/" + id + "/friends",
@@ -30,6 +34,7 @@ public class FacebookService{
                                 String name = friendJSON.getString("name");
                                 String id = friendJSON.getString("id");
                                 Friends friend = new Friends(name, id);
+                                Log.d("Friend Call", friend.getName().toString());
                                 friends.add(friend);
                             }
 
