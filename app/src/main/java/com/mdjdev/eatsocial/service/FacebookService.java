@@ -18,7 +18,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class FacebookService{
-    public static void getFriends(String id, Callback response) {
+    public static void getFriends(String id) {
         GraphRequest request = GraphRequest.newGraphPathRequest(
                 AccessToken.getCurrentAccessToken(),
                 "/" + id + "/friends",

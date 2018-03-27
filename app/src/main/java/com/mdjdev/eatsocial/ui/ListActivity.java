@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
+import com.facebook.GraphRequestAsyncTask;
 import com.facebook.GraphResponse;
 import com.mdjdev.eatsocial.R;
 import com.mdjdev.eatsocial.adapters.ListAdapter;
@@ -47,34 +48,47 @@ public class ListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
         Log.d("id", id);
+        Bundle bundle = getIntent().getExtras();
 
         getFriends(id);
     }
 
     private void getFriends(String id) {
-        final FacebookService facebookService = new FacebookService();
-
-        facebookService.getFriends(id, new Callback() {
-
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-            @Override
-            public void onResponse(Call call, Response response) {
-
-                ListActivity.this.runOnUiThread(new Runnable() {
+        GraphRequest request = GraphRequest.newGraphPathRequest(
+                AccessToken.getCurrentAccessToken(),
+                "/" + id + "/friends",
+                new GraphRequest.Callback() {
                     @Override
-                    public void run() {
-                        mAdapter = new ListAdapter(getApplicationContext(), friends);
-                        mRecyclerView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager =
-                                new LinearLayoutManager(ListActivity.this);
-                        mRecyclerView.setLayoutManager(layoutManager);
-                        mRecyclerView.setHasFixedSize(true);
+                    public void onCompleted(GraphResponse graphResponse) {
+
+                        try {
+                            Log.v("Output", graphResponse.getJSONObject().getJSONArray("data").toString());
+                            JSONArray friendsJSON = graphResponse.getJSONObject().getJSONArray("data");
+                            for (int i = 0; i < friendsJSON.length(); i++) {
+                                JSONObject friendJSON = friendsJSON.getJSONObject(i);
+                                String name = friendJSON.getString("name");
+                                String id = friendJSON.getString("id");
+                                Friends friend = new Friends(name, id);
+                                Log.d("Friend Call", friend.getName().toString());
+                                friends.add(friend);
+                            }
+                                ListActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mAdapter = new ListAdapter(getApplicationContext(), friends);
+                                    mRecyclerView.setAdapter(mAdapter);
+                                    RecyclerView.LayoutManager layoutManager =
+                                    new LinearLayoutManager(ListActivity.this);
+                                    mRecyclerView.setLayoutManager(layoutManager);
+                                    mRecyclerView.setHasFixedSize(true);
+                                }
+                            });
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
-            }
-        });
+        GraphRequest.executeBatchAsync(request);
+
     }
 }
