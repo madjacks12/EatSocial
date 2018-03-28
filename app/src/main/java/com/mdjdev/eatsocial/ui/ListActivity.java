@@ -75,19 +75,17 @@ public class ListActivity extends AppCompatActivity {
                                 friends.add(friend);
 
                                 for (int j = 0; j < friends.size(); j++) {
-
                                     GraphRequest checkinRequest = GraphRequest.newGraphPathRequest(
                                             AccessToken.getCurrentAccessToken(),
                                             "/" + id + "/tagged_places",
                                             new GraphRequest.Callback() {
                                                 @Override
                                                 public void onCompleted(GraphResponse graphResponse) {
-
                                                     try {
                                                         Log.v("Output", graphResponse.getJSONObject().getJSONArray("data").toString());
                                                         JSONArray checkinJSON = graphResponse.getJSONObject().getJSONArray("data");
-                                                        for (int i = 0; i < checkinJSON.length(); i++) {
-                                                            JSONObject friendJSON = checkinJSON.getJSONObject(i);
+                                                        for (int k = 0; k < checkinJSON.length(); k++) {
+                                                            JSONObject friendJSON = checkinJSON.getJSONObject(k);
                                                             String placeName = friendJSON.getString("name");
                                                             String placeId = friendJSON.getJSONObject("place").getString("id");
                                                             String city = friendJSON.getJSONObject("place").getJSONObject("location").getString("city");
