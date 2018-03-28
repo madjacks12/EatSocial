@@ -74,7 +74,6 @@ public class ListActivity extends AppCompatActivity {
                                 Friends friend = new Friends(name, id, checkIns);
                                 Log.d("Friend Call", friend.getName().toString());
                                 friends.add(friend);
-
                                 for (int j = 0; j < friends.size(); j++) {
                                     counter = j;
                                     GraphRequest checkinRequest = GraphRequest.newGraphPathRequest(
