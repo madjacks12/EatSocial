@@ -71,7 +71,6 @@ public class ListActivity extends AppCompatActivity {
                                 String name = friendJSON.getString("name");
                                 String id = friendJSON.getString("id");
                                 final Friends friend = new Friends(name, id, null);
-                                Log.d("Friend Call", friend.getName().toString());
                                 friends.add(friend);
 
                                 for (int j = 0; j < friends.size(); j++) {
