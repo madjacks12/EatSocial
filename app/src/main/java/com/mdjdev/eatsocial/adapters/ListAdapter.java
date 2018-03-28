@@ -3,6 +3,7 @@ package com.mdjdev.eatsocial.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+import static java.lang.String.valueOf;
 
 /**
  * Created by Matthew on 3/16/2018.
@@ -54,6 +57,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.FriendViewHold
 
     public class FriendViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.friendNameTextView) TextView mNameTextView;
+        @Bind(R.id.checkinTextView)  TextView mCheckInTextView;
         private Context mContext;
 
         public FriendViewHolder(View itemView) {
@@ -74,6 +78,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.FriendViewHold
 
         public void bindFriends(Friends friend) {
             mNameTextView.setText(friend.getName());
+            Log.d("siiiiick", friend.getCheckIn().toString());
+            mCheckInTextView.setText( valueOf(friend.getCheckIn().size()) + " check-in's");
+
+
         }
     }
 }

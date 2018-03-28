@@ -17,13 +17,13 @@ public class CheckIn {
 
     public CheckIn() {}
 
-    public CheckIn(String placeName, String placeId, String placeLat, String placeLong, String city, String state) {
+    public CheckIn(String placeName, String placeId, String placeLat, String placeLong) {
         this.placeName = placeName;
         this.placeId = placeId;
         this.placeLat = placeLat;
         this.placeLong = placeLong;
-        this.city = city;
-        this.state = state;
+//        this.city = city;
+//        this.state = state;
     }
 
     public String getPlaceName() {

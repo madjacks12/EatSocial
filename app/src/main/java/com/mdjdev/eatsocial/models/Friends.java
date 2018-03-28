@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Friends {
     private String name;
     private String id;
-    private ArrayList<CheckIn>checkIn;
+    private ArrayList<CheckIn> checkIn;
 
     public Friends() {}
 
