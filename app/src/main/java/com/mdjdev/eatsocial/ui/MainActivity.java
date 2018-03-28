@@ -18,9 +18,13 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.mdjdev.eatsocial.R;
+import com.mdjdev.eatsocial.models.Friends;
+import com.mdjdev.eatsocial.service.FacebookService;
 
 import org.json.JSONException;
 
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.zipCode) EditText mZipCode;
     Intent intent;
     LoginResult loginResult;
+    public ArrayList<Friends> friends = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,28 +61,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mMapButton.setOnClickListener(this);
         mListButton.setOnClickListener(this);
 
-
-
-
-
         //API call
 
-
-        GraphRequest request = GraphRequest.newGraphPathRequest(
-                AccessToken.getCurrentAccessToken(),
-                "/" + id + "/friends",
-                new GraphRequest.Callback() {
-                    @Override
-                    public void onCompleted( GraphResponse graphResponse) {
-                        String friends = graphResponse.getRawResponse();
-                        try {
-                            Log.v("Output", graphResponse.getJSONObject().getJSONArray("data").toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-        GraphRequest.executeBatchAsync(request);
     }
 
     @Override

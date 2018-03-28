@@ -29,9 +29,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.FriendViewHold
     private ArrayList<Friends> mFriends = new ArrayList<>();
     private Context mContext;
 
-    public ListAdapter(Context context, ArrayList<Friends> restaurants) {
+    public ListAdapter(Context context, ArrayList<Friends> friends) {
         mContext = context;
-        mFriends = restaurants;
+        mFriends = friends;
     }
 
     @Override
