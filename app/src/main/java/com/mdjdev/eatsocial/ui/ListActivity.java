@@ -13,6 +13,7 @@ import com.facebook.GraphRequestAsyncTask;
 import com.facebook.GraphResponse;
 import com.mdjdev.eatsocial.R;
 import com.mdjdev.eatsocial.adapters.ListAdapter;
+import com.mdjdev.eatsocial.models.CheckIn;
 import com.mdjdev.eatsocial.models.Friends;
 import com.mdjdev.eatsocial.models.User;
 import com.mdjdev.eatsocial.service.FacebookService;
@@ -38,6 +39,7 @@ public class ListActivity extends AppCompatActivity {
     private ListAdapter mAdapter;
     public static final String TAG = ListActivity.class.getSimpleName();
     public ArrayList<Friends> friends = new ArrayList<>();
+    public ArrayList<CheckIn> checkIns = new ArrayList<>();
     User user = new User();
 
     @Override
@@ -54,7 +56,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void getFriends(String id) {
-        GraphRequest request = GraphRequest.newGraphPathRequest(
+        GraphRequest friendRequest = GraphRequest.newGraphPathRequest(
                 AccessToken.getCurrentAccessToken(),
                 "/" + id + "/friends",
                 new GraphRequest.Callback() {
@@ -63,32 +65,66 @@ public class ListActivity extends AppCompatActivity {
 
                         try {
                             Log.v("Output", graphResponse.getJSONObject().getJSONArray("data").toString());
-                            JSONArray friendsJSON = graphResponse.getJSONObject().getJSONArray("data");
+                            final JSONArray friendsJSON = graphResponse.getJSONObject().getJSONArray("data");
                             for (int i = 0; i < friendsJSON.length(); i++) {
                                 JSONObject friendJSON = friendsJSON.getJSONObject(i);
                                 String name = friendJSON.getString("name");
                                 String id = friendJSON.getString("id");
-                                Friends friend = new Friends(name, id);
+                                final Friends friend = new Friends(name, id, null);
                                 Log.d("Friend Call", friend.getName().toString());
                                 friends.add(friend);
-                            }
-                                ListActivity.this.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mAdapter = new ListAdapter(getApplicationContext(), friends);
-                                    mRecyclerView.setAdapter(mAdapter);
-                                    RecyclerView.LayoutManager layoutManager =
-                                    new LinearLayoutManager(ListActivity.this);
-                                    mRecyclerView.setLayoutManager(layoutManager);
-                                    mRecyclerView.setHasFixedSize(true);
+
+                                for (int j = 0; j < friends.size(); j++) {
+
+                                    GraphRequest checkinRequest = GraphRequest.newGraphPathRequest(
+                                            AccessToken.getCurrentAccessToken(),
+                                            "/" + id + "/tagged_places",
+                                            new GraphRequest.Callback() {
+                                                @Override
+                                                public void onCompleted(GraphResponse graphResponse) {
+
+                                                    try {
+                                                        Log.v("Output", graphResponse.getJSONObject().getJSONArray("data").toString());
+                                                        JSONArray checkinJSON = graphResponse.getJSONObject().getJSONArray("data");
+                                                        for (int i = 0; i < checkinJSON.length(); i++) {
+                                                            JSONObject friendJSON = checkinJSON.getJSONObject(i);
+                                                            String placeName = friendJSON.getString("name");
+                                                            String placeId = friendJSON.getJSONObject("place").getString("id");
+                                                            String city = friendJSON.getJSONObject("place").getJSONObject("location").getString("city");
+                                                            String state = friendJSON.getJSONObject("place").getJSONObject("location").getString("state");
+                                                            String placeLat = friendJSON.getJSONObject("place").getJSONObject("location").getString("latitude");
+                                                            String placeLong = friendJSON.getJSONObject("place").getJSONObject("location").getString("longitude");
+                                                            CheckIn checkIn = new CheckIn(placeName, placeId, placeLat, placeLong, city, state);
+                                                            checkIns.add(checkIn);
+
+                                                        }
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }
+                                            });
+                                    GraphRequest.executeBatchAsync(checkinRequest);
+                                    friend.setCheckIn(checkIns);
+                                    ListActivity.this.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            mAdapter = new ListAdapter(getApplicationContext(), friends);
+                                            mRecyclerView.setAdapter(mAdapter);
+                                            RecyclerView.LayoutManager layoutManager =
+                                                    new LinearLayoutManager(ListActivity.this);
+                                            mRecyclerView.setLayoutManager(layoutManager);
+                                            mRecyclerView.setHasFixedSize(true);
+                                        }
+
+                                    });
                                 }
-                            });
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
                     }
                 });
-        GraphRequest.executeBatchAsync(request);
-
+        GraphRequest.executeBatchAsync(friendRequest);
     }
 }
