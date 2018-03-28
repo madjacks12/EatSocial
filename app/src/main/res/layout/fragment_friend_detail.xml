@@ -46,14 +46,12 @@
                 android:paddingLeft="30dp"
                 android:paddingTop="20dp"
                 android:paddingRight="30dp">
-
-
             </LinearLayout>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="View check-in's"
+                android:text="See Map"
                 android:id="@+id/mapButtonView"
                 android:layout_alignParentBottom="true"
                 android:background="@color/colorAccent"
