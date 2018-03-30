@@ -21,11 +21,10 @@ import butterknife.ButterKnife;
 
 
 public class FriendDetailFragment extends Fragment{
-    @Bind(R.id.friendNameTextView)
-    TextView mNameLabel;
+    @Bind(R.id.friendNameTextView) TextView mNameLabel;
     @Bind(R.id.mapButtonView) Button mCategoriesLabel;
 
-    private Friends mFriends;
+    private Friends mFriend;
 
     public static FriendDetailFragment newInstance(Friends friend) {
         FriendDetailFragment friendDetailFragment = new FriendDetailFragment();
@@ -38,7 +37,7 @@ public class FriendDetailFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mFriends = Parcels.unwrap(getArguments().getParcelable("friends"));
+        mFriend = Parcels.unwrap(getArguments().getParcelable("friend"));
     }
 
     @Override
@@ -46,7 +45,7 @@ public class FriendDetailFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_friend_detail, container, false);
         ButterKnife.bind(this, view);
 
-        mNameLabel.setText(mFriends.getName());
+        mNameLabel.setText(mFriend.getName());
 
         return view;
     }
