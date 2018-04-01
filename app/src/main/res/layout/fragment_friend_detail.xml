@@ -37,8 +37,8 @@
             android:id="@+id/listView"
             android:layout_below="@+id/checkinTextView"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-
+            android:layout_alignParentEnd="true"
+            android:descendantFocusability="blocksDescendants"
+            />
     </LinearLayout>
 </FrameLayout>

@@ -17,7 +17,8 @@
             android:text="Check-In Name"
             android:textColor="@color/colorPrimary"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:focusable="false"/>
     </LinearLayout>
 
 

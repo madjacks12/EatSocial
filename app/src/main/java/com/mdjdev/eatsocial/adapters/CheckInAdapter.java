@@ -1,52 +1,44 @@
 package com.mdjdev.eatsocial.adapters;
 
+
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
+import android.net.Uri;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
-
-import com.mdjdev.eatsocial.R;
-import com.mdjdev.eatsocial.models.CheckIn;
-import com.mdjdev.eatsocial.models.Friends;
-import com.mdjdev.eatsocial.ui.FriendDetailActivity;
-
-import org.parceler.Parcels;
 
 import java.util.ArrayList;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
-import static java.lang.String.valueOf;
 
 /**
  * Created by Matthew on 3/30/2018.
  */
 
-//    private Context mContext;
-//    private ArrayList<CheckIn> checkIns = new ArrayList<>();
-//    private String[] mCuisines;
-//
-//    public CheckInAdapter(Context mContext, int resource, ArrayList checkIns) {
-//        super(mContext, resource);
-//        this.mContext = mContext;
-//        this.checkIns = checkIns;
-//    }
-//
-//    @Override
-//    public Object getItem(int position) {
-//        ArrayList<CheckIn> checkIn = checkIns[position];
-//        String cuisine = mCuisines[position];
-//        return String.format("%s \nServes great: %s", restaurant, cuisine);
-//    }
-//
-//    @Override
-//    public int getCount() {
-//        return mRestaurants.length;
-//    }
+public class CheckInAdapter extends ArrayAdapter{
+    private Context mContext;
+    private ArrayList<String>names = new ArrayList<>();
+    private ArrayList<String>latitude = new ArrayList<>();
+    private ArrayList<String>longitude = new ArrayList<>();
+
+
+    public CheckInAdapter(Context mContext, int resource, ArrayList<String> names, ArrayList<String> latitude, ArrayList<String> longitude) {
+        super(mContext, resource);
+        this.mContext = mContext;
+        this.names = names;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        String name = names.get(position);
+        return name;
+    }
+
+    @Override
+    public int getCount() {
+        return names.size();
+    }
+
+}
 
