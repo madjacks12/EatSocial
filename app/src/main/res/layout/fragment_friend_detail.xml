@@ -31,32 +31,14 @@
                 android:textStyle="bold" />
         </RelativeLayout>
 
-        <RelativeLayout
+        <ListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:id="@+id/listView"
+            android:layout_below="@+id/checkinTextView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_above="@+id/mapButtonView"
-                android:paddingLeft="30dp"
-                android:paddingTop="20dp"
-                android:paddingRight="30dp">
-            </LinearLayout>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="See Map"
-                android:id="@+id/mapButtonView"
-                android:layout_alignParentBottom="true"
-                android:background="@color/colorAccent"
-                android:textColor="@color/colorPrimary"
-                android:textSize="15sp" />
-        </RelativeLayout>
     </LinearLayout>
 </FrameLayout>

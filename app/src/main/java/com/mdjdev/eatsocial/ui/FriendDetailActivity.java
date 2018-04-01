@@ -39,10 +39,5 @@ public class FriendDetailActivity extends AppCompatActivity {
             adapterViewPager = new FriendPagerAdapter(getSupportFragmentManager(), mFriends);
             mViewPager.setAdapter(adapterViewPager);
             mViewPager.setCurrentItem(startingPosition);
-
-
-
-
-
         }
     }

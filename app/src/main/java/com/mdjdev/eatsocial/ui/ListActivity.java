@@ -51,7 +51,6 @@ public class ListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
         Log.d("id", id);
-        Bundle bundle = getIntent().getExtras();
 
         getFriends(id);
     }
