@@ -30,11 +30,13 @@ public class FriendPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
+
         return mFriends.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
+
         return mFriends.get(position).getName();
     }
 }

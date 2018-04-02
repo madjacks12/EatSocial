@@ -44,8 +44,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng smokehouseTavern = new LatLng(45.5177, -122.6509);
         mMap.addMarker(new MarkerOptions().position(sweetHereAfter).title("Sweet Hereafter"));
         mMap.addMarker(new MarkerOptions().position(smokehouseTavern).title("Smokehouse Tavern"));
-        mMap.setMaxZoomPreference(20);
-        mMap.setMinZoomPreference(10);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(portland));
     }
 }

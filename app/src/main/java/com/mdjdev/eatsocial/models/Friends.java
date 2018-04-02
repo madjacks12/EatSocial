@@ -3,6 +3,7 @@ package com.mdjdev.eatsocial.models;
 import org.parceler.Parcel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Matthew on 3/25/2018.
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 public class Friends {
     private String name;
     private String id;
-    private ArrayList<CheckIn> checkIn;
+    private List<CheckIn> checkIn = new ArrayList<>();
 
     public Friends() {}
 
@@ -30,11 +31,11 @@ public class Friends {
         return id;
     }
 
-    public ArrayList<CheckIn> getCheckIn() {
+    public List<CheckIn> getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(ArrayList<CheckIn> checkIn) {
+    public void setCheckIn(List<CheckIn> checkIn) {
         this.checkIn = checkIn;
     }
 }

@@ -32,17 +32,12 @@ public class FriendDetailActivity extends AppCompatActivity {
             setContentView(R.layout.activity_friend_detail);
             ButterKnife.bind(this);
 
-            mFriends = Parcels.unwrap(getIntent().getParcelableExtra("restaurants"));
+            mFriends = Parcels.unwrap(getIntent().getParcelableExtra("friends"));
 
             int startingPosition = getIntent().getIntExtra("position", 0);
 
             adapterViewPager = new FriendPagerAdapter(getSupportFragmentManager(), mFriends);
             mViewPager.setAdapter(adapterViewPager);
             mViewPager.setCurrentItem(startingPosition);
-
-
-
-
-
         }
     }
