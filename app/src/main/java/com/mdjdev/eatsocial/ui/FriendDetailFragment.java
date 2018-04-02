@@ -81,6 +81,8 @@ public class FriendDetailFragment extends Fragment implements View.OnClickListen
                 longitude.add(longit);
             }
 
+        mSaveFriendButton.setOnClickListener(this);
+
 
         final CheckInAdapter adapter = new CheckInAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, names, latitude, longitude);
         mListView.setAdapter(adapter);
@@ -106,10 +108,10 @@ public class FriendDetailFragment extends Fragment implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if (v == mSaveFriendButton) {
-            DatabaseReference restaurantRef = FirebaseDatabase
+            DatabaseReference friendsRef = FirebaseDatabase
                     .getInstance()
                     .getReference(Constants.FIREBASE_CHILD_FRIENDS);
-            restaurantRef.push().setValue(mFriend);
+            friendsRef.push().setValue(mFriend);
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }

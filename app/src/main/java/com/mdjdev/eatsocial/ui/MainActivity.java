@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSubHeading.setTypeface(comfortaaFont);
         mMapButton.setOnClickListener(this);
         mListButton.setOnClickListener(this);
+        mSaveFriendButton.setOnClickListener(this);
 
         //API call
 

@@ -35,7 +35,7 @@ public class Friends {
         return checkIn;
     }
 
-    public void setCheckIn(ArrayList<CheckIn> checkIn) {
+    public void setCheckIn(List<CheckIn> checkIn) {
         this.checkIn = checkIn;
     }
 }

@@ -20,6 +20,8 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
+import static java.lang.String.valueOf;
+
 /**
  * Created by Matthew on 4/1/2018.
  */
@@ -40,10 +42,13 @@ public class FirebaseFriendViewHolder extends RecyclerView.ViewHolder implements
 
     public void bindRestaurant(Friends friend) {
         TextView nameTextView = mView.findViewById(R.id.friendNameTextView);
-        nameTextView.setText(friend.getName());
+        TextView checkInTextView = mView.findViewById(R.id.checkinTextView);
 
+        nameTextView.setText(friend.getName());
+        checkInTextView.setText( valueOf(friend.getCheckIn().size()) + " check-in's");
 
     }
+
 
     @Override
     public void onClick(View view) {
@@ -62,7 +67,7 @@ public class FirebaseFriendViewHolder extends RecyclerView.ViewHolder implements
 
                 Intent intent = new Intent(mContext, FriendDetailActivity.class);
                 intent.putExtra("position", itemPosition);
-                intent.putExtra("restaurants", Parcels.wrap(friends));
+                intent.putExtra("friends", Parcels.wrap(friends));
 
                 mContext.startActivity(intent);
             }
