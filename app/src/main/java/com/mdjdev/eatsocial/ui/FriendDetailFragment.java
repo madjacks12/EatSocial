@@ -16,7 +16,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.mdjdev.eatsocial.Constants;
 import com.mdjdev.eatsocial.R;
 import com.mdjdev.eatsocial.adapters.CheckInAdapter;
 import com.mdjdev.eatsocial.adapters.ListAdapter;
@@ -34,9 +38,10 @@ import butterknife.ButterKnife;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 
-public class FriendDetailFragment extends Fragment{
+public class FriendDetailFragment extends Fragment implements View.OnClickListener{
     @Bind(R.id.friendNameTextView) TextView mNameLabel;
     @Bind(R.id.listView) ListView mListView;
+    @Bind(R.id.saveFriendButton) Button mSaveFriendButton;
     private Friends mFriend;
     ArrayList<String>names = new ArrayList<>();
     ArrayList<String>latitude = new ArrayList<>();
@@ -95,5 +100,16 @@ public class FriendDetailFragment extends Fragment{
 
 
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mSaveFriendButton) {
+            DatabaseReference restaurantRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_FRIENDS);
+            restaurantRef.push().setValue(mFriend);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+        }
     }
 }

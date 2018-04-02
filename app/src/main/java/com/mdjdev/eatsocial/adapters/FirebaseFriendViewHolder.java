@@ -39,7 +39,7 @@ public class FirebaseFriendViewHolder extends RecyclerView.ViewHolder implements
     }
 
     public void bindRestaurant(Friends friend) {
-        TextView nameTextView = mView.findViewById(R.id.restaurantNameTextView);
+        TextView nameTextView = mView.findViewById(R.id.friendNameTextView);
 
         nameTextView.setText(friend.getName());
 

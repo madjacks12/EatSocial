@@ -27,7 +27,7 @@ public class SavedFriendListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_restaurants);
+        setContentView(R.layout.activity_list);
         ButterKnife.bind(this);
 
         mRestaurantReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_FRIENDS);
@@ -36,7 +36,7 @@ public class SavedFriendListActivity extends AppCompatActivity {
 
     private void setUpFirebaseAdapter() {
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Friends, FirebaseFriendViewHolder>
-                (Friends.class, R.layout.restaurant_list_item, FirebaseRestaurantViewHolder.class,
+                (Friends.class, R.layout.friend_list_item, FirebaseFriendViewHolder.class,
                         mRestaurantReference) {
 
             @Override
