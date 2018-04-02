@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "801523049033",
+    "firebase_url": "https://eatsocial-1521217409898.firebaseio.com",
+    "project_id": "eatsocial-1521217409898",
+    "storage_bucket": "eatsocial-1521217409898.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801523049033:android:fa76614e66a66d59",
+        "android_client_info": {
+          "package_name": "com.mdjdev.eatsocial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "801523049033-r61n0i0retqqc3nv0s4blr5kdo3nvcfo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDikOUXw3QoIUyO3IWhBIcyaWM0xmVNzV4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

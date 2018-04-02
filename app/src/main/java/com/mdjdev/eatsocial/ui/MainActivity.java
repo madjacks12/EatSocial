@@ -2,6 +2,7 @@ package com.mdjdev.eatsocial.ui;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,8 @@ import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
+import com.google.firebase.database.DatabaseReference;
+import com.mdjdev.eatsocial.Constants;
 import com.mdjdev.eatsocial.R;
 import com.mdjdev.eatsocial.models.Friends;
 import com.mdjdev.eatsocial.service.FacebookService;
@@ -37,9 +40,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.mapButton) Button mMapButton;
     @Bind(R.id.imageView) ImageView mImageView;
     @Bind(R.id.zipCode) EditText mZipCode;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
     Intent intent;
     LoginResult loginResult;
     public ArrayList<Friends> friends = new ArrayList<>();
+    private DatabaseReference mSearchedLocationReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +84,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(MainActivity.this, "Zip Code must be 5 digits", Toast.LENGTH_SHORT).show();
             }
             else {
+                    if(!(zip).equals("")) {
+                        addToSharedPreferences(zip);
+                    }
                 startActivity(intent);
             }
         }
@@ -92,6 +101,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         }
+    }
+    private void addToSharedPreferences(String zip) {
+        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, zip).apply();
     }
 
 }
