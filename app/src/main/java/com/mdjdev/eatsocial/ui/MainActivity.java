@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -38,8 +39,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.subHeading) TextView mSubHeading;
     @Bind(R.id.listButton) Button mListButton;
     @Bind(R.id.mapButton) Button mMapButton;
+    @Bind(R.id.saveFriendButton) Button mSaveFriendButton;
     @Bind(R.id.imageView) ImageView mImageView;
     @Bind(R.id.zipCode) EditText mZipCode;
+
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     Intent intent;
@@ -58,7 +61,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String name = intentGet.getStringExtra("name");
         String surname = intentGet.getStringExtra("surname");
         Intent intentPush = new Intent(MainActivity.this, ListActivity.class);
-
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
 
         Typeface comfortaaFont = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa_Regular.ttf");
 
@@ -73,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if(v == mListButton) {
+        if (v == mListButton) {
             String zip = mZipCode.getText().toString();
             Intent intent = new Intent(MainActivity.this, ListActivity.class);
             Intent intentGet = getIntent();
@@ -82,24 +86,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.putExtra("id", id);
             if (zip.length() != 5) {
                 Toast.makeText(MainActivity.this, "Zip Code must be 5 digits", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                    if(!(zip).equals("")) {
-                        addToSharedPreferences(zip);
-                    }
+            } else {
+                if (!(zip).equals("")) {
+                    addToSharedPreferences(zip);
+                }
                 startActivity(intent);
             }
         }
-        if(v == mMapButton) {
+        if (v == mMapButton) {
             String zip = mZipCode.getText().toString();
             Intent intent = new Intent(MainActivity.this, MapsActivity.class);
             intent.putExtra("zip", zip);
             if (zip.length() != 5) {
                 Toast.makeText(MainActivity.this, "Zip Code must be 5 digits", Toast.LENGTH_SHORT).show();
-            }
-            else {
+            } else {
                 startActivity(intent);
             }
+        }
+        if (v == mSaveFriendButton) {
+            Intent intent = new Intent(MainActivity.this, SavedFriendListActivity.class);
+            startActivity(intent);
         }
     }
     private void addToSharedPreferences(String zip) {

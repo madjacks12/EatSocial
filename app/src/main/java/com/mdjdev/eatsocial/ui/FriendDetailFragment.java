@@ -31,6 +31,7 @@ import com.squareup.picasso.Picasso;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -69,7 +70,7 @@ public class FriendDetailFragment extends Fragment implements View.OnClickListen
         View view = inflater.inflate(R.layout.fragment_friend_detail, container, false);
         ButterKnife.bind(this, view);
         mNameLabel.setText(mFriend.getName());
-        ArrayList<CheckIn> checkins = mFriend.getCheckIn();
+        List<CheckIn> checkins = mFriend.getCheckIn();
 
             for (int i = 0; i < checkins.size(); i++) {
                 String name = checkins.get(i).getPlaceName();

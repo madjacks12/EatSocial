@@ -1,77 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/imageView"
-        android:src="@drawable/restaurant"
-        android:scaleType="centerCrop"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/restaurant" />
+
     <TextView
+        android:id="@+id/headingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Eat Social"
-        android:layout_marginTop="35dp"
-        android:id="@+id/headingText"
-        android:textColor="@color/white"
-        android:textSize="60sp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:text="Eat Social"
+        android:textColor="@color/white"
+        android:textSize="60sp" />
 
     <TextView
         android:id="@+id/subHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/headingText"
+        android:layout_centerHorizontal="true"
         android:text="Find Where Friends Eat"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textSize="20sp"
-        android:layout_below="@+id/headingText"
-        android:layout_centerHorizontal="true" />
+        android:textSize="20sp" />
 
     <Button
+        android:id="@+id/listButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="List View"
-        android:id="@+id/listButton"
+        android:layout_alignBaseline="@+id/saveFriendButton"
+        android:layout_alignBottom="@+id/saveFriendButton"
+        android:layout_toStartOf="@+id/saveFriendButton"
         android:background="@color/colorPrimary"
-        android:textColor="@color/white"
-        android:textSize="15sp"
         android:paddingEnd="8dp"
         android:paddingStart="8dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_alignBaseline="@+id/mapButton"
-        android:layout_alignBottom="@+id/mapButton"
-        android:layout_alignStart="@+id/headingText" />
+        android:text="List View"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
 
     <EditText
+        android:id="@+id/zipCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/zipCode"
+        android:layout_above="@+id/mapButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
         android:background="@color/colorAccent"
-        android:layout_marginBottom="33dp"
-        android:padding="5dp"
         android:hint="Enter Zip Code"
         android:inputType="number"
-        android:layout_above="@+id/listButton"
-        android:layout_centerHorizontal="true" />
+        android:padding="5dp" />
 
     <Button
+        android:id="@+id/mapButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Map View"
-        android:id="@+id/mapButton"
+        android:layout_alignBaseline="@+id/saveFriendButton"
+        android:layout_alignBottom="@+id/saveFriendButton"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/saveFriendButton"
         android:background="@color/colorPrimary"
-        android:textColor="@color/white"
-        android:textSize="15sp"
         android:paddingEnd="8dp"
         android:paddingStart="8dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="22dp"
+        android:text="Map View"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/saveFriendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/zipCode"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/headingText" />
+        android:layout_marginBottom="22dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@color/colorPrimary"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:text="Saved Friends"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        tools:layout_alignParentBottom="true" />
 
 </RelativeLayout>
