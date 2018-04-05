@@ -5,32 +5,26 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Fade;
 import android.util.Log;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
-import com.facebook.GraphRequestAsyncTask;
 import com.facebook.GraphResponse;
 import com.mdjdev.eatsocial.R;
 import com.mdjdev.eatsocial.adapters.ListAdapter;
 import com.mdjdev.eatsocial.models.CheckIn;
 import com.mdjdev.eatsocial.models.Friends;
 import com.mdjdev.eatsocial.models.User;
-import com.mdjdev.eatsocial.service.FacebookService;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import okhttp3.Response;
 
 
 public class ListActivity extends AppCompatActivity {
@@ -47,12 +41,19 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+        overridePendingTransition(R.anim.slide_down, R.anim.slide_up);
         ButterKnife.bind(this);
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
         Log.d("id", id);
-
         getFriends(id);
+
+    }
+
+    private void setupWindowAnimations() {
+        Fade fadeTransition = new Fade();
+        fadeTransition.setDuration(1000);
+        getWindow().setEnterTransition(fadeTransition);
     }
 
     private void getFriends(String id) {

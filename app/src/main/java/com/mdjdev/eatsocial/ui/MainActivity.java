@@ -3,29 +3,30 @@ package com.mdjdev.eatsocial.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.transition.Explode;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
+import android.transition.TransitionManager;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.AccessToken;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.google.firebase.database.DatabaseReference;
 import com.mdjdev.eatsocial.Constants;
 import com.mdjdev.eatsocial.R;
 import com.mdjdev.eatsocial.models.Friends;
-import com.mdjdev.eatsocial.service.FacebookService;
-
-import org.json.JSONException;
 
 
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.saveFriendButton) Button mSaveFriendButton;
     @Bind(R.id.imageView) ImageView mImageView;
     @Bind(R.id.zipCode) EditText mZipCode;
+    @Bind(R.id.mainViewgroup) ViewGroup mMainviewGroup;
 
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
     @Override
     public void onClick(View v) {
         if (v == mListButton) {
@@ -85,12 +88,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String id = intentGet.getStringExtra("id");
             intent.putExtra("zip", zip);
             intent.putExtra("id", id);
+
             if (zip.length() != 5) {
                 Toast.makeText(MainActivity.this, "Zip Code must be 5 digits", Toast.LENGTH_SHORT).show();
             } else {
                 if (!(zip).equals("")) {
                     addToSharedPreferences(zip);
                 }
+                final Rect viewRect = new Rect();
+                mListButton.getGlobalVisibleRect(viewRect);
+
                 startActivity(intent);
             }
         }
