@@ -4,14 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".ui.ListActivity">
+    tools:context="com.mdjdev.eatsocial.ui.ListActivity">
 
 
-    <fragment
-        android:id="@+id/fragmentRestaurantList"
-        android:name="com.mdjdev.eatsocial.ui.FriendListFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_friend_list" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"/>
 
 </RelativeLayout>
