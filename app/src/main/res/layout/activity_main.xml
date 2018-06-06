@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mainViewgroup">
 
 
@@ -9,8 +10,8 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:scaleType="centerCrop"
         android:src="@drawable/restaurant" />
 
@@ -22,18 +23,22 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp"
         android:text="Eat Social"
-        android:textColor="@color/white"
+        android:textColor="@color/cardview_light_background"
         android:textSize="60sp" />
 
     <TextView
         android:id="@+id/subHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/headingText"
+        android:layout_alignStart="@+id/headingText"
         android:layout_below="@+id/headingText"
-        android:layout_centerHorizontal="true"
         android:text="Find Where Friends Eat"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textSize="20sp" />
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="?android:attr/colorBackgroundFloating"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/listButton"
@@ -46,16 +51,16 @@
         android:paddingEnd="8dp"
         android:paddingStart="8dp"
         android:text="List View"
-        android:textColor="@color/white"
+        android:textColor="?android:attr/colorBackgroundFloating"
         android:textSize="15sp" />
 
     <EditText
         android:id="@+id/zipCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/mapButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
+        android:layout_above="@+id/saveFriendButton"
+        android:layout_alignStart="@+id/saveFriendButton"
+        android:layout_marginBottom="35dp"
         android:background="@color/colorAccent"
         android:hint="Enter Zip Code"
         android:inputType="number"
@@ -67,29 +72,27 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/saveFriendButton"
         android:layout_alignBottom="@+id/saveFriendButton"
-        android:layout_marginStart="16dp"
         android:layout_toEndOf="@+id/saveFriendButton"
         android:background="@color/colorPrimary"
         android:paddingEnd="8dp"
         android:paddingStart="8dp"
         android:text="Map View"
-        android:textColor="@color/white"
+        android:textColor="?android:attr/colorForegroundInverse"
         android:textSize="15sp" />
 
     <Button
         android:id="@+id/saveFriendButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/zipCode"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="22dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="19dp"
         android:layout_marginHorizontal="10dp"
         android:background="@color/colorPrimary"
         android:paddingEnd="8dp"
         android:paddingStart="8dp"
         android:text="Saved Friends"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        tools:layout_alignParentBottom="true" />
+        android:textColor="?android:attr/colorBackgroundFloating"
+        android:textSize="15sp" />
 
 </RelativeLayout>
